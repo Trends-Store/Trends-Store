@@ -69,6 +69,7 @@
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
       background-color: #f9f9f9;
+      cursor: pointer;
     }
 
     .product-card:hover {
@@ -85,6 +86,45 @@
       font-size: 18px;
       margin: 10px 0 5px;
       color: #007BFF;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1001; 
+      padding-top: 100px; 
+      left: 0; top: 0;
+      width: 100%; height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-images img {
+      width: 30%;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    .close {
+      color: #333;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     /* Contact Section */
@@ -126,6 +166,7 @@
     #whatsapp-chat:hover {
       transform: scale(1.1);
     }
+
   </style>
 </head>
 <body>
@@ -147,64 +188,52 @@
 
   <!-- Products Section -->
   <section class="products">
-    <!-- Add new product cards here -->
-    <div class="product-card">
-      <img src="Trends Store\headset.jpg" alt="Product 1">
-      <h3>Product Name</h3>
-      <p>$Price</p>
+    <!-- Product 1 -->
+    <div class="product-card" onclick="openModal('product1Modal')">
+      <img src="Trends Store/headset.jpg" alt="Headset">
+      <h3>Headset</h3>
+      <p>$99</p>
     </div>
 
-    <div class="product-card">
+    <!-- Product 2 -->
+    <div class="product-card" onclick="openModal('product2Modal')">
       <img src="https://via.placeholder.com/200" alt="Product 2">
       <h3>Product Name</h3>
       <p>$Price</p>
     </div>
 
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 3">
-      <h3>Product Name</h3>
-      <p>$Price</p>
-    </div>
-
-
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 3">
-      <h3>Product Name</h3>
-      <p>$Price</p>
-    </div>
-
-
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 3">
-      <h3>Product Name</h3>
-      <p>$Price</p>
-    </div>
-
-
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 3">
-      <h3>Product Name</h3>
-      <p>$Price</p>
-    </div>
-
-
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 3">
-      <h3>Product Name</h3>
-      <p>$Price</p>
-    </div>
-
-
-
-    <!-- To add new product, copy this div -->
-    <!--
-    <div class="product-card">
-      <img src="IMAGE_URL" alt="Product Name">
-      <h3>Product Name</h3>
-      <p>$Price</p>
-    </div>
-    -->
+    <!-- Add more products by copying above product-card div -->
   </section>
+
+  <!-- Modals -->
+
+  <!-- Modal for Product 1 -->
+  <div id="product1Modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('product1Modal')">&times;</span>
+      <h2>Headset</h2>
+      <p>Full details about this product. Amazing sound quality, wireless, noise-cancelling.</p>
+      <div class="modal-images">
+        <img src="Trends Store/headset.jpg" alt="Headset 1">
+        <img src="Trends Store/headset2.jpg" alt="Headset 2">
+        <img src="Trends Store/headset3.jpg" alt="Headset 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Product 2 -->
+  <div id="product2Modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('product2Modal')">&times;</span>
+      <h2>Product Name</h2>
+      <p>Full details about this product.</p>
+      <div class="modal-images">
+        <img src="https://via.placeholder.com/200" alt="Product 2-1">
+        <img src="https://via.placeholder.com/200" alt="Product 2-2">
+        <img src="https://via.placeholder.com/200" alt="Product 2-3">
+      </div>
+    </div>
+  </div>
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
@@ -222,6 +251,27 @@
   <a href="https://wa.me/916238460216" target="_blank" id="whatsapp-chat">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" height="35" alt="WhatsApp">
   </a>
+
+  <!-- JS -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Close modal if clicked outside
+    window.onclick = function(event) {
+      let modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if(event.target == modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
